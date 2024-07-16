@@ -26,7 +26,7 @@ export const Input = ({
       value={value}
       type={type}
       placeholder={placeholder}
-      className={`${inputVariants[variant]} ${className}`}
+      className={`${inputVariants[variant]} ${className} rounded-md`}
     />
   );
 };
