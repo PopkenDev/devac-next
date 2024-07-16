@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 interface CardWrapperProps {
   label: string;
@@ -19,14 +19,14 @@ export const CardWrapper = ({
 }: CardWrapperProps) => {
   return (
     <>
-      <header>
-        <h1 className="text-gray-50 text-2xl font-semibold">{label}</h1>
-        <p>{subText}</p>
+      <header className="text-center">
+        <h1 className="mb-2 text-2xl font-semibold text-gray-50">{label}</h1>
+        <p className="text-sm text-gray-400">{subText}</p>
       </header>
       <div className="my-8">{children}</div>
       <footer>
-        <p className="text-gray-300 text-sm font-semibold">
-          {backButtonLabel}{" "}
+        <p className="text-sm font-semibold text-gray-300">
+          {backButtonLabel}{' '}
           <Link href={backButtonHref} className="text-orange-600">
             {backButtonLink}
           </Link>
