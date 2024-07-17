@@ -8,13 +8,7 @@
   :root {
     height: 100%;
   }
-
-  body {
-    /* background-image: radial-gradient(
-      ellipse at top,
-      rgb(20, 6, 4) 0%,
-      #000000 100%
-    ); */
-    background-color: #000000;
+  * {
+    @apply transition-colors duration-300;
   }
 }
