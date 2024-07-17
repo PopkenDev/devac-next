@@ -8,40 +8,64 @@ import {
   RiGithubFill,
   RiGoogleFill,
 } from '@remixicon/react';
+import { useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FormLabel } from '@/components/ui/form-label';
 import { FormItem } from '@/components/ui/form-item';
-import { useState } from 'react';
+import { FormData, LoginSchema } from '../../schemas';
+import { FormErrorMsg } from '../ui/form-error-msg';
 
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormDate] = useState({
+  const [formData, setFormData] = useState({
     username: '',
     password: '',
+  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(LoginSchema),
   });
 
   const githubIcon = <RiGithubFill className="h-6 w-6 text-gray-50" />;
   const googleIcon = <RiGoogleFill className="h-6 w-6 text-gray-50" />;
 
-  const handleLogin = (event: any) => {
-    event.preventDefault();
+  const handleLogin = (values: FormData) => {
+    console.log(values);
   };
   return (
     <>
-      <form onSubmit={handleLogin} className="w-80 space-y-8">
+      <form onSubmit={handleSubmit(handleLogin)} className="w-80 space-y-8">
         <FormItem>
           <FormLabel variant="auth" label="Username" />
           <div className="relative">
-            <Input type="text" variant="auth" />
+            <Input
+              required={true}
+              type="text"
+              variant="auth"
+              {...register('userName')}
+            />
             <RiUserFill className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-50" />
           </div>
+          {errors.userName && (
+            <FormErrorMsg message={errors.userName.message} />
+          )}
         </FormItem>
         <FormItem>
           <FormLabel variant="auth" label="Password" />
           <div className="relative">
-            <Input type={showPassword ? 'text' : 'password'} variant="auth" />
+            <Input
+              required={true}
+              type={showPassword ? 'text' : 'password'}
+              variant="auth"
+              {...register('password')}
+            />
             <RiLockFill className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-50" />
             <span
               onClick={() => setShowPassword(!showPassword)}
@@ -54,6 +78,9 @@ export const LoginForm = () => {
               )}
             </span>
           </div>
+          {errors.password && (
+            <FormErrorMsg message={errors.password.message} />
+          )}
         </FormItem>
         <Button label="Login" variant="auth" type="submit" />
       </form>
@@ -75,7 +102,7 @@ export const LoginForm = () => {
           variant="default"
           type="button"
           icon={googleIcon}
-          className="flex w-full items-center justify-center gap-x-2 bg-red-800 py-2 text-sm font-semibold text-gray-50 outline-none ring-gray-400 transition-all duration-300 ease-in-out hover:bg-gray-900 focus:ring-2"
+          className="flex w-full items-center justify-center gap-x-2 bg-red-800 py-2 text-sm font-semibold text-gray-50 outline-none ring-gray-400 transition-all duration-300 ease-in-out hover:bg-red-700 focus:ring-2"
         />
       </div>
     </>

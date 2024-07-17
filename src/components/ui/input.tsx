@@ -1,5 +1,7 @@
 'use client';
 
+import { forwardRef } from 'react';
+
 const inputVariants = {
   default: '',
   auth: 'bg-[#0e0e0e] py-1.5 w-full ring-orange-600 outline-none focus:ring-2 border border-white/10 px-4 text-gray-50 px-8',
@@ -8,25 +10,30 @@ const inputVariants = {
 interface InputProps {
   type: 'text' | 'password' | 'email' | 'number';
   variant: 'default' | 'auth';
+  required: boolean;
   placeholder?: string;
   className?: string;
   value?: string;
 }
 
-export const Input = ({
-  type,
-  placeholder,
-  className,
-  variant,
-  value,
-}: InputProps) => {
-  if (!variant) return null;
-  return (
-    <input
-      value={value}
-      type={type}
-      placeholder={placeholder}
-      className={`${inputVariants[variant]} ${className} rounded-md`}
-    />
-  );
-};
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  (
+    { type, placeholder, className, variant, value, required, ...props },
+    ref,
+  ) => {
+    if (!variant) return null;
+    return (
+      <input
+        {...props}
+        ref={ref}
+        required={required}
+        value={value}
+        type={type}
+        placeholder={placeholder}
+        className={`${inputVariants[variant]} ${className} rounded-md`}
+      />
+    );
+  },
+);
+
+Input.displayName = 'Input';
