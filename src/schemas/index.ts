@@ -1,13 +1,17 @@
 import { z, ZodType } from 'zod';
 
-export type FormData = {
+export type RegisterFormData = {
   userName: string;
-  email?: string;
+  email: string;
   password: string;
-  repeatPassword?: string;
+  repeatPassword: string;
+};
+export type LoginFormData = {
+  userName: string;
+  password: string;
 };
 
-export const RegisterSchema: ZodType<FormData> = z
+export const RegisterSchema: ZodType<RegisterFormData> = z
   .object({
     userName: z
       .string()
@@ -26,7 +30,7 @@ export const RegisterSchema: ZodType<FormData> = z
     path: ['repeatPassword'],
   });
 
-export const LoginSchema: ZodType<FormData> = z.object({
+export const LoginSchema: ZodType<LoginFormData> = z.object({
   userName: z
     .string()
     .min(3, 'Username must contain atleast 3 characters')

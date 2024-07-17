@@ -13,7 +13,8 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { FormData, RegisterSchema } from '@/schemas';
+import { RegisterFormData, RegisterSchema } from '@/schemas';
+import { Register } from '@/actions/register';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FormLabel } from '@/components/ui/form-label';
@@ -32,15 +33,15 @@ export const RegisterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<RegisterFormData>({
     resolver: zodResolver(RegisterSchema),
   });
 
   const githubIcon = <RiGithubFill className="h-6 w-6 text-gray-50" />;
   const googleIcon = <RiGoogleFill className="h-6 w-6 text-gray-50" />;
 
-  const handleLogin = (values: FormData) => {
-    console.log(values);
+  const handleLogin = (values: RegisterFormData) => {
+    Register(values);
   };
   return (
     <>
