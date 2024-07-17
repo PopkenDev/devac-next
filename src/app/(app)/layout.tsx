@@ -7,7 +7,9 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       <div className="appContainer dark flex">
         <SideMenu />
-        {children}
+        <div className="h-[calc(100vh-80px)] w-screen bg-red-500">
+          {children}
+        </div>
       </div>
     </div>
   );
