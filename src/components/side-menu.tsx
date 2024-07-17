@@ -56,8 +56,8 @@ const sideNav = [
 
 export const SideMenu = () => {
   return (
-    <aside className="h-screen w-80 pt-20">
-      <div className="flex h-full flex-col border-r border-white/10 bg-[#131313]">
+    <aside className="h-[calc(100vh-80px)] w-80">
+      <div className="flex h-full flex-col border-r border-white/5 bg-[#131313]">
         <nav className="flex-1">
           <ul>
             {sideNav.map((item, index) => (

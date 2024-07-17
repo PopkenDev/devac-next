@@ -1,10 +1,14 @@
+import { Header } from '@/components/header';
 import { SideMenu } from '@/components/side-menu';
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <SideMenu />
-      {children}
+    <div className="max-w-screen overflow-x-hidden">
+      <Header />
+      <div className="flex">
+        <SideMenu />
+        {children}
+      </div>
     </div>
   );
 };
