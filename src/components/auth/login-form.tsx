@@ -19,9 +19,13 @@ import { FormItem } from '@/components/ui/form-item';
 import { LoginFormData, LoginSchema } from '../../schemas';
 import { FormErrorMsg } from '../ui/form-error-msg';
 import { Login } from '@/actions/login';
+import { FormError } from '@/components/ui/form-error';
+import { FormSuccess } from '../ui/form-success';
 
 export const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
+  const [error, setError] = useState<string | undefined>('');
+  const [success, setSuccess] = useState<string | undefined>('');
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -40,7 +44,9 @@ export const LoginForm = () => {
 
   const handleLogin = (values: LoginFormData) => {
     startTransition(() => {
-      Login(values);
+      Login(values).then((data) => {
+        setError(data?.error);
+      });
     });
   };
   return (
@@ -50,6 +56,7 @@ export const LoginForm = () => {
           <FormLabel variant="auth" label="Username" />
           <div className="relative">
             <Input
+              disabled={isPending}
               required={true}
               type="text"
               variant="auth"
@@ -65,6 +72,7 @@ export const LoginForm = () => {
           <FormLabel variant="auth" label="Password" />
           <div className="relative">
             <Input
+              disabled={isPending}
               required={true}
               type={showPassword ? 'text' : 'password'}
               variant="auth"
@@ -86,7 +94,14 @@ export const LoginForm = () => {
             <FormErrorMsg message={errors.password.message} />
           )}
         </FormItem>
-        <Button label="Login" variant="auth" type="submit" />
+        {error && <FormError message="Invalid credentials!" />}
+        {success && <FormSuccess message="Email sent!" />}
+        <Button
+          disabled={isPending}
+          label="Login"
+          variant="auth"
+          type="submit"
+        />
       </form>
       <div>
         <p className="my-8 text-center text-sm font-semibold text-gray-50">
