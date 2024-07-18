@@ -9,17 +9,19 @@ import {
   RiGoogleFill,
 } from '@remixicon/react';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FormLabel } from '@/components/ui/form-label';
 import { FormItem } from '@/components/ui/form-item';
-import { FormData, LoginSchema } from '../../schemas';
+import { LoginFormData, LoginSchema } from '../../schemas';
 import { FormErrorMsg } from '../ui/form-error-msg';
+import { Login } from '@/actions/login';
 
 export const LoginForm = () => {
+  const [isPending, startTransition] = useTransition();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -29,15 +31,17 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<LoginFormData>({
     resolver: zodResolver(LoginSchema),
   });
 
   const githubIcon = <RiGithubFill className="h-6 w-6 text-gray-50" />;
   const googleIcon = <RiGoogleFill className="h-6 w-6 text-gray-50" />;
 
-  const handleLogin = (values: FormData) => {
-    console.log(values);
+  const handleLogin = (values: LoginFormData) => {
+    startTransition(() => {
+      Login(values);
+    });
   };
   return (
     <>
