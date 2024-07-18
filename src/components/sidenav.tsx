@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHouseChimney,
@@ -12,6 +13,7 @@ const sideNav = [
   {
     label: 'Home',
     subText: 'Home sweet home',
+    href: '',
     icon: (
       <FontAwesomeIcon
         icon={faHouseChimney}
@@ -22,6 +24,7 @@ const sideNav = [
   {
     label: 'Course hub',
     subText: 'Explore courses',
+    href: '',
     icon: (
       <FontAwesomeIcon
         icon={faGraduationCap}
@@ -32,6 +35,7 @@ const sideNav = [
   {
     label: 'Take a quiz',
     subText: 'Test your knowledge',
+    href: '',
     icon: (
       <FontAwesomeIcon
         icon={faFileSignature}
@@ -42,6 +46,7 @@ const sideNav = [
   {
     label: 'Leaderboard',
     subText: 'Check your rank',
+    href: '/leaderboard',
     icon: (
       <FontAwesomeIcon icon={faChartLine} className="h-6 w-6 transition-none" />
     ),
@@ -53,11 +58,13 @@ interface SideNavProps {
 }
 
 export const SideNav = ({ isExpanded }: SideNavProps) => {
+  const router = useRouter();
   return (
     <nav className="flex-1">
       <ul>
         {sideNav.map((item, index) => (
           <li
+            onClick={() => router.push(item.href)}
             key={index}
             className="group flex h-[68px] cursor-pointer flex-row items-center gap-x-4 px-4 py-3 text-gray-50 hover:bg-gray-900/20"
           >
