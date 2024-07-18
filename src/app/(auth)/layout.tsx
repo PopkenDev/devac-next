@@ -1,5 +1,5 @@
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
-  return <div className="h-screen">{children}</div>;
+  return <div className="h-screen bg-black">{children}</div>;
 };
 
 export default AuthLayout;
