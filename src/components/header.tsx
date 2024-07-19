@@ -1,7 +1,16 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell,
+  faChevronDown,
+  faGear,
+  faGears,
+  faMagnifyingGlass,
+  faPowerOff,
+  faRocket,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { RiMoonClearFill, RiMoonFill, RiSunFill } from '@remixicon/react';
 import { useState } from 'react';
@@ -45,7 +54,7 @@ export const Header = () => {
           </form>
         </div>
         <div className="flex w-1/3 items-center justify-end">
-          <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-x-8">
             <button className="text-gray-50 transition-colors duration-300 ease-in-out hover:text-orange-600">
               <FontAwesomeIcon icon={faBell} className="h-6 w-6" />
             </button>
@@ -55,6 +64,44 @@ export const Header = () => {
               ) : (
                 <RiMoonClearFill className="h-6 w-6 text-gray-50" />
               )}
+            </button>
+          </div>
+          <div className="mx-8 h-8 w-px bg-white/10"></div>
+          <div>
+            <button className="group relative h-20">
+              <div className="flex items-center gap-x-4">
+                <figure className="h-9 w-9 rounded-full bg-white/50">
+                  {/* Profile image here */}
+                </figure>
+                <FontAwesomeIcon
+                  icon={faChevronDown}
+                  className="h-2.5 w-2.5 text-gray-50"
+                />
+              </div>
+              <div className="absolute right-0 top-[90%] max-h-0 w-44 overflow-hidden bg-[#131313] transition-all duration-300 ease-in-out group-hover:max-h-96">
+                <ul className="border border-white/5 text-left text-sm text-gray-50">
+                  <li className="flex items-center gap-x-2 border-b border-white/10 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
+                    <FontAwesomeIcon icon={faUser} className="h-3.5 w-3.5" />
+                    Profile
+                  </li>
+                  <li className="flex items-center gap-x-2 border-b border-white/10 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
+                    <FontAwesomeIcon icon={faGear} className="h-3.5 w-3.5" />
+                    Account settings
+                  </li>
+                  <li className="flex items-center gap-x-2 border-b border-white/10 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
+                    <FontAwesomeIcon icon={faRocket} className="h-3.5 w-3.5" />
+                    Upgrade to{' '}
+                    <span className="font-semibold text-orange-600">Pro</span>
+                  </li>
+                  <li className="flex items-center gap-x-2 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
+                    <FontAwesomeIcon
+                      icon={faPowerOff}
+                      className="h-3.5 w-3.5"
+                    />
+                    Log out
+                  </li>
+                </ul>
+              </div>
             </button>
           </div>
         </div>
