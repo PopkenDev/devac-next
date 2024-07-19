@@ -8,12 +8,13 @@ import {
   faChartLine,
   faFileSignature,
 } from '@fortawesome/free-solid-svg-icons';
+import { SidenavItem } from './sidenav-item';
 
 const sideNav = [
   {
     label: 'Home',
     subText: 'Home sweet home',
-    href: '',
+    href: '/dashboard',
     icon: (
       <FontAwesomeIcon
         icon={faHouseChimney}
@@ -55,31 +56,23 @@ const sideNav = [
 
 interface SideNavProps {
   isExpanded: boolean;
+  closeMenu: () => void;
 }
 
-export const SideNav = ({ isExpanded }: SideNavProps) => {
-  const router = useRouter();
+export const SideNav = ({ isExpanded, closeMenu }: SideNavProps) => {
   return (
     <nav className="flex-1">
       <ul>
         {sideNav.map((item, index) => (
-          <li
-            onClick={() => router.push(item.href)}
-            key={index}
-            className="group flex h-[68px] cursor-pointer flex-row items-center gap-x-4 px-4 py-3 text-gray-50 hover:bg-gray-900/20"
-          >
-            <span className="text-gray-50 transition-none group-hover:text-orange-500">
-              {item.icon}
-            </span>
-            <div
-              className={`space-y-1 ${isExpanded ? 'w-fit overflow-auto opacity-100' : 'w-0 overflow-hidden opacity-0'} transition-all duration-300 ease-in-out`}
-            >
-              <h3 className="text-base font-bold group-hover:text-orange-500">
-                {item.label}
-              </h3>
-              <p className="text-xs text-gray-500">{item.subText}</p>
-            </div>
-          </li>
+          <SidenavItem
+            label={item.label}
+            index={index}
+            icon={item.icon}
+            href={item.href}
+            isExpanded={isExpanded}
+            subText={item.subText}
+            closeMenu={closeMenu}
+          />
         ))}
       </ul>
     </nav>

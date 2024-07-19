@@ -7,10 +7,10 @@ import {
   faBookOpen,
   faGears,
 } from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
 import { SideNav } from './sidenav';
 import { useState } from 'react';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { SidenavItem } from './sidenav-item';
 
 export const SideMenu = () => {
   const [expanded, setExpanded] = useState(false);
@@ -35,63 +35,49 @@ export const SideMenu = () => {
             />
           )}
         </button>
-        <SideNav isExpanded={expanded} />
+        <SideNav isExpanded={expanded} closeMenu={() => setExpanded(false)} />
         <div className="w-full">
-          <Link
-            href=""
-            className="group flex h-[68px] w-full flex-row items-center gap-x-4 px-4 py-3 text-gray-50 hover:bg-gray-900/20"
-          >
-            <FontAwesomeIcon
-              icon={faBookOpen}
-              className="h-6 w-6 text-gray-50 transition-none group-hover:text-orange-500"
+          <ul>
+            <SidenavItem
+              closeMenu={() => setExpanded(false)}
+              label="Docs"
+              icon={
+                <FontAwesomeIcon
+                  icon={faBookOpen}
+                  className="h-6 w-6 text-gray-50 transition-none group-hover:text-orange-500"
+                />
+              }
+              href="/docs"
+              isExpanded={expanded}
+              subText="Learn more about the platform"
             />
-            <div
-              className={`space-y-1 ${expanded ? 'w-fit overflow-auto opacity-100' : 'w-0 overflow-hidden opacity-0'} transition-all duration-300 ease-in-out`}
-            >
-              <h3 className="text-base font-bold transition-none group-hover:text-orange-500">
-                Docs
-              </h3>
-              <p className="text-xs text-gray-500">
-                Learn more about the platform
-              </p>
-            </div>
-          </Link>
-          <Link
-            href=""
-            className="group flex h-[68px] w-full flex-row items-center gap-x-4 px-4 py-3 text-gray-50 transition-none hover:bg-gray-900/20"
-          >
-            <FontAwesomeIcon
-              icon={faDiscord}
-              className="h-6 w-6 text-gray-50 transition-none group-hover:text-orange-500"
+            <SidenavItem
+              closeMenu={() => setExpanded(false)}
+              label="Discord"
+              icon={
+                <FontAwesomeIcon
+                  icon={faDiscord}
+                  className="h-6 w-6 text-gray-50 transition-none group-hover:text-orange-500"
+                />
+              }
+              href="/"
+              isExpanded={expanded}
+              subText="Join our community"
             />
-            <div
-              className={`space-y-1 ${expanded ? 'w-fit overflow-auto opacity-100' : 'w-0 overflow-hidden opacity-0'} transition-all duration-300 ease-in-out`}
-            >
-              <h3 className="text-base font-bold transition-none group-hover:text-orange-500">
-                Discord
-              </h3>
-              <p className="text-xs text-gray-500">Join our community</p>
-            </div>
-          </Link>
-          <Link
-            href=""
-            className="group flex h-[68px] w-full flex-row items-center gap-x-4 px-4 py-3 text-gray-50 transition-none hover:bg-gray-900/20"
-          >
-            <FontAwesomeIcon
-              icon={faGears}
-              className="h-6 w-6 text-gray-50 transition-none group-hover:text-orange-500"
+            <SidenavItem
+              closeMenu={() => setExpanded(false)}
+              label="Settings"
+              icon={
+                <FontAwesomeIcon
+                  icon={faGears}
+                  className="h-6 w-6 text-gray-50 transition-none group-hover:text-orange-500"
+                />
+              }
+              href="/settings"
+              isExpanded={expanded}
+              subText="Manage your account settings"
             />
-            <div
-              className={`space-y-1 ${expanded ? 'w-fit overflow-auto opacity-100' : 'w-0 overflow-hidden opacity-0'} transition-all duration-300 ease-in-out`}
-            >
-              <h3 className="text-base font-bold transition-none group-hover:text-orange-500">
-                Settings
-              </h3>
-              <p className="text-xs text-gray-500">
-                Manage your account settings
-              </p>
-            </div>
-          </Link>
+          </ul>
         </div>
       </div>
     </aside>

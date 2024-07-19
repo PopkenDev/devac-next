@@ -1,7 +1,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { RiMoonClearFill, RiMoonFill, RiSunFill } from '@remixicon/react';
 import { useState } from 'react';
@@ -44,14 +44,19 @@ export const Header = () => {
             </div>
           </form>
         </div>
-        <div className="flex w-1/3 justify-end">
-          <button onClick={toggleColorMode}>
-            {darkMode ? (
-              <RiSunFill className="text-yellow-300" />
-            ) : (
-              <RiMoonClearFill className="text-gray-50" />
-            )}
-          </button>
+        <div className="flex w-1/3 items-center justify-end">
+          <div className="flex items-center gap-x-4">
+            <button className="text-gray-50 transition-colors duration-300 ease-in-out hover:text-orange-600">
+              <FontAwesomeIcon icon={faBell} className="h-6 w-6" />
+            </button>
+            <button onClick={toggleColorMode}>
+              {darkMode ? (
+                <RiSunFill className="h-6 w-6 text-yellow-300" />
+              ) : (
+                <RiMoonClearFill className="h-6 w-6 text-gray-50" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </header>
