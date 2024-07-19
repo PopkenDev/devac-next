@@ -5,15 +5,17 @@ import {
   faBell,
   faChevronDown,
   faGear,
-  faGears,
   faMagnifyingGlass,
   faPowerOff,
   faRocket,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { RiMoonClearFill, RiMoonFill, RiSunFill } from '@remixicon/react';
+import { RiMoonClearFill, RiSunFill } from '@remixicon/react';
+import Image from 'next/image';
 import { useState } from 'react';
+
+import { Logout } from '@/components/auth/logout';
 
 export const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -55,30 +57,36 @@ export const Header = () => {
         </div>
         <div className="flex w-1/3 items-center justify-end">
           <div className="flex items-center gap-x-8">
-            <button className="text-gray-50 transition-colors duration-300 ease-in-out hover:text-orange-600">
-              <FontAwesomeIcon icon={faBell} className="h-6 w-6" />
-            </button>
             <button onClick={toggleColorMode}>
               {darkMode ? (
-                <RiSunFill className="h-6 w-6 text-yellow-300" />
+                <RiSunFill className="h-5 w-5 text-yellow-300" />
               ) : (
-                <RiMoonClearFill className="h-6 w-6 text-gray-50" />
+                <RiMoonClearFill className="h-5 w-5 text-gray-50" />
               )}
+            </button>
+            <button className="flex items-center text-gray-50 transition-colors duration-300 ease-in-out hover:text-orange-600">
+              <FontAwesomeIcon icon={faBell} className="h-5 w-5" />
             </button>
           </div>
           <div className="mx-8 h-8 w-px bg-white/10"></div>
           <div>
-            <button className="group relative h-20">
+            <button className="group/dropdown relative h-20">
               <div className="flex items-center gap-x-4">
-                <figure className="h-9 w-9 rounded-full bg-white/50">
-                  {/* Profile image here */}
+                <figure className="h-9 w-9 overflow-hidden rounded-full bg-white/50">
+                  <Image
+                    src="/profile-img.jpeg"
+                    alt="avatar"
+                    width={36}
+                    height={36}
+                    className="h-full w-full"
+                  />
                 </figure>
                 <FontAwesomeIcon
                   icon={faChevronDown}
                   className="h-2.5 w-2.5 text-gray-50"
                 />
               </div>
-              <div className="absolute right-0 top-[90%] max-h-0 w-44 overflow-hidden bg-[#131313] transition-all duration-300 ease-in-out group-hover:max-h-96">
+              <div className="absolute right-0 top-[90%] max-h-0 w-44 overflow-hidden bg-[#131313] transition-all duration-300 ease-in-out group-hover/dropdown:max-h-96">
                 <ul className="border border-white/5 text-left text-sm text-gray-50">
                   <li className="flex items-center gap-x-2 border-b border-white/10 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
                     <FontAwesomeIcon icon={faUser} className="h-3.5 w-3.5" />
@@ -88,17 +96,19 @@ export const Header = () => {
                     <FontAwesomeIcon icon={faGear} className="h-3.5 w-3.5" />
                     Account settings
                   </li>
-                  <li className="flex items-center gap-x-2 border-b border-white/10 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
+                  <li className="group/item flex items-center gap-x-2 border-b border-white/10 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
                     <FontAwesomeIcon icon={faRocket} className="h-3.5 w-3.5" />
-                    Upgrade to{' '}
-                    <span className="font-semibold text-orange-600">Pro</span>
+                    Upgrade to
+                    <span className="-ml-1 font-semibold text-orange-600 transition-colors duration-300 ease-in-out group-hover/item:text-gray-50">
+                      Pro
+                    </span>
                   </li>
                   <li className="flex items-center gap-x-2 px-4 py-2 transition-colors duration-300 ease-in-out hover:bg-orange-600">
                     <FontAwesomeIcon
                       icon={faPowerOff}
                       className="h-3.5 w-3.5"
                     />
-                    Log out
+                    <Logout />
                   </li>
                 </ul>
               </div>

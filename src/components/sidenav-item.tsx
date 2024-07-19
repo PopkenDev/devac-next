@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 
 interface SidenavItemProps {
-  index?: number;
   icon: React.ReactNode;
   label: string;
   subText: string;
@@ -13,13 +12,13 @@ interface SidenavItemProps {
 }
 
 export const SidenavItem = ({
-  index,
   icon,
   label,
   subText,
   href,
   isExpanded,
   closeMenu,
+  ...props
 }: SidenavItemProps) => {
   const router = useRouter();
   return (
@@ -27,7 +26,7 @@ export const SidenavItem = ({
       onClick={() => {
         router.push(href), closeMenu();
       }}
-      key={index}
+      {...props}
       className="group flex h-[68px] cursor-pointer flex-row items-center gap-x-4 px-4 py-3 text-gray-50 hover:bg-gray-900/20"
     >
       <span className="text-gray-50 transition-none group-hover:text-orange-500">

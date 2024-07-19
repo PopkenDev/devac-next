@@ -65,8 +65,8 @@ export const SideNav = ({ isExpanded, closeMenu }: SideNavProps) => {
       <ul>
         {sideNav.map((item, index) => (
           <SidenavItem
+            key={index}
             label={item.label}
-            index={index}
             icon={item.icon}
             href={item.href}
             isExpanded={isExpanded}
