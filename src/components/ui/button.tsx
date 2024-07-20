@@ -7,10 +7,22 @@ const buttonVariants = {
   oAuth: 'flex justify-center items-center gap-x-2',
   settings:
     'bg-[#222] hover:bg-[#333] w-fit text-gray-50 font-semibold text-sm py-2 px-4 outline-none ring-[#111] focus:ring-2 dark-shadow',
+  warning: '',
+  danger:
+    'bg-[#222] hover:bg-[#333] dark-shadow w-fit text-red-700 font-semibold text-sm py-2 px-4 outline-none ring-red-800 focus:ring-2',
+  success: '',
 };
 
 interface ButtonProps {
-  variant: 'default' | 'auth' | 'icon' | 'oAuth' | 'settings';
+  variant:
+    | 'default'
+    | 'auth'
+    | 'icon'
+    | 'oAuth'
+    | 'settings'
+    | 'warning'
+    | 'danger'
+    | 'success';
   label: string;
   type: 'button' | 'submit' | 'reset';
   className?: string;

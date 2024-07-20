@@ -4,10 +4,10 @@ import { forwardRef } from 'react';
 
 const inputVariants = {
   default:
-    'bg-[#333] py-1.5 ring-orange-600 outline-none focus:ring-2 border border-white/10 text-gray-50 px-12',
-  auth: 'bg-[#0e0e0e] py-1.5 w-full ring-orange-600 outline-none focus:ring-2 border border-white/10 px-4 text-gray-50 px-8',
+    'bg-[#333] py-1.5 ring-orange-700 outline-none focus:ring-2 border border-white/10 text-gray-50 px-12',
+  auth: 'bg-[#0e0e0e] py-1.5 w-full ring-orange-700 outline-none focus:ring-2 border border-white/10 text-gray-50 px-8',
   'no-icon':
-    'bg-[#333] py-1.5 ring-orange-600 outline-none focus:ring-2 border border-white/10 text-gray-50 px-4',
+    'bg-[#333] py-1.5 ring-orange-700 outline-none focus:ring-2 border border-white/10 text-gray-50 px-2',
 };
 
 interface InputProps {
