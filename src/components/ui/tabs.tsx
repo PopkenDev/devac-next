@@ -18,7 +18,7 @@ export const Tabs = ({ data, activeTab, setActiveTab }: TabsProps) => {
         <button
           key={index}
           onClick={() => setActiveTab(index)}
-          className={`rounded-md px-4 py-1 text-sm font-semibold transition-none ${activeTab === index ? 'bg-orange-600 text-gray-50' : 'text-gray-600'}`}
+          className={`rounded-md px-4 py-1 text-sm font-semibold transition-none ${activeTab === index ? 'bg-orange-700 text-gray-50' : 'text-gray-600'}`}
         >
           {tab.icon}
           {tab.label}

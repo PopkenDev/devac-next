@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
 const formLabelVariants = {
-  default: "",
-  auth: "text-gray-50 font-semibold text-sm",
+  default: 'text-gray-50 font-semibold text-sm',
+  auth: 'text-gray-50 font-semibold text-sm',
 };
 
 interface FormLabelProps {
-  variant: "default" | "auth";
+  variant: 'default' | 'auth';
   label: string;
   className?: string;
 }
