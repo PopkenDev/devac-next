@@ -1,7 +1,7 @@
 'use client';
 
 const buttonVariants = {
-  default: '',
+  default: 'text-sm font-semibold text-gray-50 px-4 py-2 dark-shadow',
   auth: 'bg-orange-600 hover:bg-orange-800 text-gray-50 text-sm font-semibold py-2 w-full outline-none ring-orange-400 focus:ring-2',
   icon: '',
   oAuth: 'flex justify-center items-center gap-x-2',
