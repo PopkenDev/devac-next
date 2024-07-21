@@ -9,9 +9,9 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
-export const AccountSettingsForm = () => {
+export const AccountSettingsForm = ({ user }: any) => {
   return (
-    <div className="mt-12 w-1/2">
+    <div className="mt-12 w-1/2 pb-8">
       <h2 className="mb-8 text-center text-3xl font-black text-black dark:text-gray-50">
         Account Settings
       </h2>
@@ -82,7 +82,7 @@ export const AccountSettingsForm = () => {
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-gray-300">
                     <span className="font-semibold">Email address:</span>{' '}
-                    thefox1337@gmail.com
+                    {user?.email}
                   </p>
                   <p className="flex items-center gap-x-2 text-sm text-gray-300">
                     Verified:{' '}
@@ -99,6 +99,26 @@ export const AccountSettingsForm = () => {
 
               <span className="text-xs text-gray-600">
                 You can change your email address at any time.
+              </span>
+            </div>
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-red-700">
+              Delete account
+            </h2>
+            <div className="mb-5 mt-4 h-px w-full bg-white/10"></div>
+            <div className="flex flex-col gap-y-2">
+              <div className="flex flex-col gap-y-2">
+                <Button
+                  label="Delete your account"
+                  variant="danger"
+                  type="button"
+                />
+              </div>
+
+              <span className="text-xs text-gray-600">
+                Once you delete your account, there is no going back. Please be
+                certain.
               </span>
             </div>
           </div>

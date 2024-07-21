@@ -11,27 +11,28 @@ import { useState } from 'react';
 import { AccountSettingsForm } from './account-settings-form';
 import { ProfileSettingsForm } from './profile-settings-form';
 
-const tabs = [
-  {
-    label: 'Profile',
-    icon: <FontAwesomeIcon icon={faUser} className="mr-2 transition-none" />,
-    component: <ProfileSettingsForm />,
-  },
-  {
-    label: 'Account settings',
-    icon: <FontAwesomeIcon icon={faGear} className="mr-2 transition-none" />,
-    component: <AccountSettingsForm />,
-  },
-  {
-    label: 'Billing information',
-    icon: (
-      <FontAwesomeIcon icon={faCreditCard} className="mr-2 transition-none" />
-    ),
-    component: <AccountSettingsForm />,
-  },
-];
+interface SettingsPageClientProps {}
 
-export const SettingsPageClient = () => {
+export const SettingsPageClient = ({ user }: any) => {
+  const tabs = [
+    {
+      label: 'Profile',
+      icon: <FontAwesomeIcon icon={faUser} className="mr-2 transition-none" />,
+      component: <ProfileSettingsForm />,
+    },
+    {
+      label: 'Account settings',
+      icon: <FontAwesomeIcon icon={faGear} className="mr-2 transition-none" />,
+      component: <AccountSettingsForm user={user} />,
+    },
+    {
+      label: 'Billing information',
+      icon: (
+        <FontAwesomeIcon icon={faCreditCard} className="mr-2 transition-none" />
+      ),
+      component: <AccountSettingsForm />,
+    },
+  ];
   const [activeTab, setActiveTab] = useState(0);
   const activeTabComponent = tabs[activeTab].component;
 
