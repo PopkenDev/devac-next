@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
 import './globals.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false;
 
 const lato = Lato({
   subsets: ['latin'],
