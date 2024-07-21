@@ -6,7 +6,7 @@ const SettingsPage = async () => {
   return (
     <main className="h-full">
       <div className="flex h-full flex-col items-center py-8">
-        <SettingsPageClient />
+        <SettingsPageClient user={session?.user} />
       </div>
     </main>
   );
