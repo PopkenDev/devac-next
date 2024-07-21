@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { AccountSettingsForm } from './account-settings-form';
 import { ProfileSettingsForm } from './profile-settings-form';
+import { BillingInformationForm } from './billing-information-form';
 
 interface SettingsPageClientProps {}
 
@@ -30,7 +31,7 @@ export const SettingsPageClient = ({ user }: any) => {
       icon: (
         <FontAwesomeIcon icon={faCreditCard} className="mr-2 transition-none" />
       ),
-      component: <AccountSettingsForm />,
+      component: <BillingInformationForm />,
     },
   ];
   const [activeTab, setActiveTab] = useState(0);
