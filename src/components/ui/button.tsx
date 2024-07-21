@@ -11,6 +11,8 @@ const buttonVariants = {
   danger:
     'bg-[#222] hover:bg-[#333] dark-shadow w-fit text-red-700 font-semibold text-sm py-2 px-4 outline-none ring-red-800 focus:ring-2',
   success: '',
+  outline:
+    'bg-transparent border w-fit border-orange-600 text-orange-600 text-sm font-semibold py-2 px-4 outline-none ring-orange-400 focus:ring-2 hover:bg-orange-600 hover:text-gray-50',
 };
 
 interface ButtonProps {
@@ -22,7 +24,8 @@ interface ButtonProps {
     | 'settings'
     | 'warning'
     | 'danger'
-    | 'success';
+    | 'success'
+    | 'outline';
   label: string;
   type: 'button' | 'submit' | 'reset';
   className?: string;
