@@ -6,10 +6,18 @@ import { CameraIcon } from '@heroicons/react/16/solid';
 import { FormItem } from '@/components/ui/form-item';
 import { FormLabel } from '@/components/ui/form-label';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { useState } from 'react';
 
 export const ProfileSettingsForm = () => {
+  const [switchChecked, setSwitchChecked] = useState({
+    name: false,
+    url: false,
+    rank: false,
+  });
   return (
-    <div className="mt-12 w-1/2">
+    <div className="mt-12 w-1/2 pb-8">
       <h2 className="mb-8 text-center text-3xl font-black text-black dark:text-gray-50">
         Profile
       </h2>
@@ -35,47 +43,85 @@ export const ProfileSettingsForm = () => {
               required={false}
               className="w-1/3"
             />
+
             <span className="text-xs text-gray-600">
-              Your name will be visible on your profile.
+              Your name will {switchChecked.name ? '' : 'not'} be visible on
+              your profile.
             </span>
+            {/* <label
+              htmlFor="hideName"
+              className="flex items-center gap-x-1 text-xs text-gray-300"
+            >
+              <input type="checkbox" name="hideName" id="" />
+              Hide name
+            </label> */}
+            <Switch
+              onChange={() =>
+                setSwitchChecked({
+                  ...switchChecked,
+                  name: !switchChecked.name,
+                })
+              }
+              isChecked={switchChecked.name}
+              label={switchChecked?.name ? 'Show' : 'Hide'}
+            />
+          </FormItem>
+          <FormItem>
+            <FormLabel label="Portfolio website" variant="default" />
+            <div className="relative">
+              <Input
+                type="url"
+                variant="no-icon"
+                required={false}
+                className="w-1/3 pl-14"
+              />
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-sm text-gray-400">
+                https://
+              </span>
+            </div>
+            <span className="text-xs text-gray-600">
+              Your website url will be visible on your profile.
+            </span>
+            <Switch
+              onChange={() =>
+                setSwitchChecked({
+                  ...switchChecked,
+                  url: !switchChecked.url,
+                })
+              }
+              isChecked={switchChecked.url}
+              label={switchChecked?.url ? 'Show' : 'Hide'}
+            />
           </FormItem>
           <FormItem>
             <div>
               <FormLabel label="Show rank" variant="default" />
               <span className="ml-1 text-xs text-gray-600">(Senior)</span>
             </div>
-
-            <fieldset className="flex flex-col items-start gap-2">
-              <label
-                htmlFor=""
-                className="flex gap-x-2 text-sm font-semibold dark:text-gray-50"
-              >
-                <input
-                  type="radio"
-                  name="showRank"
-                  value="yes"
-                  className="rounded-full border-none"
-                />
-                Yes
-              </label>
-              <label
-                htmlFor=""
-                className="flex gap-x-2 text-sm font-semibold dark:text-gray-50"
-              >
-                <input
-                  type="radio"
-                  name="showRank"
-                  value="no"
-                  className="rounded-full border-none"
-                />
-                No
-              </label>
-            </fieldset>
+            <Switch
+              onChange={() =>
+                setSwitchChecked({
+                  ...switchChecked,
+                  rank: !switchChecked.rank,
+                })
+              }
+              isChecked={switchChecked.rank}
+              label={switchChecked?.rank ? 'Show' : 'Hide'}
+            />
           </FormItem>
           <FormItem>
             <FormLabel label="Bio" variant="default" />
-            <textarea className="dark-shadow h-40 w-2/3 resize-none rounded-md bg-[#333] px-2 py-1.5 text-gray-50 outline-none ring-orange-500 focus:ring-2"></textarea>
+            <textarea
+              className="dark-shadow h-40 w-2/3 resize-none rounded-md bg-[#333] px-2 py-1.5 text-sm text-gray-50 outline-none ring-orange-500 focus:ring-2"
+              placeholder="Tell something about yourself..."
+            ></textarea>
           </FormItem>
+          <Button
+            type="submit"
+            label="Update profile"
+            variant="outline"
+            className="w-1/3"
+          />
         </form>
       </div>
     </div>
