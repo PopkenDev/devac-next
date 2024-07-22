@@ -7,7 +7,8 @@ const buttonVariants = {
   oAuth: 'flex justify-center items-center gap-x-2',
   settings:
     'bg-[#222] hover:bg-[#333] w-fit text-gray-50 font-semibold text-sm py-2 px-4 outline-none ring-[#111] focus:ring-2 dark-shadow',
-  warning: '',
+  warning:
+    'bg-[#222] hover:bg-[#333] dark-shadow w-fit text-yellow-600 font-semibold text-sm py-2 px-4 outline-none ring-yellow-800 focus:ring-2',
   danger:
     'bg-[#222] hover:bg-[#333] dark-shadow w-fit text-red-700 font-semibold text-sm py-2 px-4 outline-none ring-red-800 focus:ring-2',
   success: '',
@@ -31,6 +32,7 @@ interface ButtonProps {
   className?: string;
   disabled?: boolean;
   icon?: JSX.Element;
+  onClick?: () => void;
 }
 
 export const Button = ({
@@ -40,10 +42,12 @@ export const Button = ({
   className,
   disabled,
   icon,
+  onClick,
 }: ButtonProps) => {
   if (!variant) return null;
   return (
     <button
+      onClick={onClick}
       type={type}
       disabled={disabled}
       className={`${buttonVariants[variant]} ${className} rounded-md transition-all duration-300 ease-in-out`}
